@@ -26,4 +26,14 @@ public class TestScheduler {
         log.info("cron scheduler...");
         sampleService.execute2();
     }
+
+    @Scheduled(fixedDelay = 15000)
+    public void run3() {
+        log.info("scheduler start thread={}", Thread.currentThread().getName());
+
+        // 5개 작업 병렬 실행
+        for (int i = 1; i <= 5; i++) {
+            sampleService.execute3(i);
+        }
+    }
 }
